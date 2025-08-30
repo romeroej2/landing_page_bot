@@ -193,9 +193,57 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
                     <User className="h-4 w-4 mt-0.5 text-white/80" />
                   )}
                   <div className="flex-1">
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                      {message.content}
-                    </p>
+                    <div className="text-sm leading-relaxed">
+                      {message.role === 'assistant' ? (
+                        <div className="prose prose-sm max-w-none text-gray-800">
+                          <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                            table: ({children}) => (
+                              <div className="overflow-x-auto my-2">
+                                <table className="min-w-full border-collapse border border-gray-300 text-xs">
+                                  {children}
+                                </table>
+                              </div>
+                            ),
+                            thead: ({children}) => (
+                              <thead className="bg-gray-50">{children}</thead>
+                            ),
+                            th: ({children}) => (
+                              <th className="border border-gray-300 px-2 py-1 text-left font-semibold text-gray-700">
+                                {children}
+                              </th>
+                            ),
+                            td: ({children}) => (
+                              <td className="border border-gray-300 px-2 py-1 text-gray-800">
+                                {children}
+                              </td>
+                            ),
+                            p: ({children}) => (
+                              <p className="mb-2 last:mb-0">{children}</p>
+                            ),
+                            strong: ({children}) => (
+                              <strong className="font-semibold text-gray-900">{children}</strong>
+                            ),
+                            code: ({children}) => (
+                              <code className="bg-gray-100 px-1 py-0.5 rounded text-xs font-mono text-gray-800">
+                                {children}
+                              </code>
+                            ),
+                            pre: ({children}) => (
+                              <pre className="bg-gray-100 p-2 rounded my-2 overflow-x-auto text-xs">
+                                {children}
+                              </pre>
+                            )
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                      )}
+                    </div>
                     <p className={`text-xs mt-1 ${
                       message.role === 'user' ? 'text-white/70' : 'text-gray-500'
                     }`}>

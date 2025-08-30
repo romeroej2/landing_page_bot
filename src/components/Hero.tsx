@@ -27,17 +27,17 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
-            <span className="block mb-2">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-normal">
               {t('hero.title')}
-            </span>
-            <span className="block bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+            </h1>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-normal bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent pb-2">
               {t('hero.titleHighlight')}
-            </span>
-          </h1>
+            </h1>
+          </div>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-8">
             {t('hero.subtitle')}
           </p>
 

@@ -134,7 +134,7 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-end p-4 pointer-events-none">
-      <div className="bg-white rounded-lg shadow-2xl border border-gray-200 w-full max-w-md h-96 flex flex-col pointer-events-auto">
+      <div className="bg-white rounded-lg shadow-2xl border border-gray-200 w-full max-w-md h-[36rem] flex flex-col pointer-events-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-t-lg">
           <div className="flex items-center space-x-2">
@@ -200,10 +200,42 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
                             remarkPlugins={[remarkGfm]}
                             components={{
                             table: ({children}) => (
-                              <div className="overflow-x-auto my-2 -mx-2">
-                                <table className="w-full border-collapse border border-gray-300 text-xs min-w-0">
-                                  {children}
-                                </table>
+                              <div className="my-2 space-y-1">
+                                <div className="hidden">
+                                  <table className="w-full border-collapse border border-gray-300 text-xs">
+                                    {children}
+                                  </table>
+                                </div>
+                                <div className="block">
+                                  {React.Children.map(children, (child) => {
+                                    if (React.isValidElement(child) && child.type === 'tbody') {
+                                      return React.Children.map(child.props.children, (row, index) => {
+                                        if (React.isValidElement(row)) {
+                                          const cells = React.Children.toArray(row.props.children)
+                                          return (
+                                            <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-2 mb-2 text-xs">
+                                              {cells.map((cell, cellIndex) => {
+                                                if (React.isValidElement(cell)) {
+                                                  const headers = ['Registro', 'Producto', 'Marca', 'Titular', 'País', 'Estado', 'Emisión', 'Vencimiento']
+                                                  const header = headers[cellIndex] || `Campo ${cellIndex + 1}`
+                                                  return (
+                                                    <div key={cellIndex} className="flex justify-between py-1 border-b border-gray-200 last:border-b-0">
+                                                      <span className="font-semibold text-gray-600 mr-2 flex-shrink-0">{header}:</span>
+                                                      <span className="text-gray-800 text-right break-words">{cell.props.children}</span>
+                                                    </div>
+                                                  )
+                                                }
+                                                return null
+                                              })}
+                                            </div>
+                                          )
+                                        }
+                                        return null
+                                      })
+                                    }
+                                    return null
+                                  })}
+                                </div>
                               </div>
                             ),
                             thead: ({children}) => (
@@ -215,10 +247,8 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
                               </th>
                             ),
                             td: ({children}) => (
-                              <td className="border border-gray-300 px-1 py-1 text-gray-800 text-xs break-words max-w-0">
-                                <div className="truncate" title={typeof children === 'string' ? children : ''}>
-                                  {children}
-                                </div>
+                              <td className="border border-gray-300 px-1 py-1 text-gray-800 text-xs break-words">
+                                {children}
                               </td>
                             ),
                             p: ({children}) => (

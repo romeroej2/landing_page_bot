@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a modern, internationalized landing page template built with Next.js 14, TypeScript, and Tailwind CSS. The template features a complete i18n system supporting English and Spanish, with a professional design system based on blue color palettes.
+This is a modern, internationalized landing page template built with Next.js 14, TypeScript, and Tailwind CSS. The template features a complete i18n system supporting English and Spanish, with a professional design system based on blue color palettes. It includes an AI-powered chatbot for querying Colombian dietary supplements registry data.
 
 ## Development Commands
 
@@ -18,19 +18,26 @@ npm run lint         # Run ESLint checks
 
 ## Architecture & Key Systems
 
+### AI Chatbot System
+- **OpenAI Integration** via `src/lib/openai.ts` using OpenAI SDK v5+
+- **Responses API** with file search capability for RAG (Retrieval-Augmented Generation)
+- **Vector Store Integration** for Colombian dietary supplements registry data
+- **Configurable System Prompt** in `src/config/chatbot-prompt.ts` for easy customization
+- **Responsive Chat UI** with markdown table rendering optimized for mobile
+- **Session Management** with in-memory conversation storage and localStorage persistence
+
 ### Internationalization (i18n) System
 - **Custom i18n implementation** in `src/lib/i18n.tsx` using React Context
-- **Translation files** in `src/locales/` (en.json, es.json)
-- **Dynamic page metadata** via `DynamicHead` component that updates document.title and meta description based on locale
+- **Translation files** in `src/locales/` (en.json, es.json) including chatbot strings
 - **Language persistence** via localStorage and automatic browser language detection
 - **Next.js i18n config** in `next.config.js` with localeDetection disabled (using custom detection)
 
 ### Component Architecture
-- **Layout pattern**: Fixed header + hero + sections + footer
+- **Layout pattern**: Fixed header + hero + sections + footer + floating chatbot
+- **Chatbot Integration**: `ChatbotProvider.tsx` manages state, `Chatbot.tsx` handles UI/UX
 - **Header component** (`Header.tsx`) with responsive navigation and language selector
 - **Hero section** (`Hero.tsx`) with animated elements and stats cards
 - **Modular sections**: Features, CTA, Footer - each self-contained
-- **Logo component** (`Logo.tsx`) with size variants and optional text display
 
 ### Styling System
 - **Tailwind CSS** with custom color palette (primary/secondary blue variants)
@@ -69,8 +76,35 @@ function Component() {
 - `features.*` - Features section with nested items
 - `cta.*` - Call-to-action section
 - `footer.*` - Footer with nested link groups
+- `chatbot.*` - Chatbot UI strings (title, placeholder, buttons, error messages)
+
+## Working with the Chatbot System
+
+### Modifying Chatbot Behavior
+- Edit `src/config/chatbot-prompt.ts` to change assistant personality, instructions, or output format
+- System prompt is imported into the API route, no code changes needed for prompt updates
+- Supports RAG (Retrieval-Augmented Generation) when `OPENAI_VECTOR_STORE_ID` is configured
+
+### Chatbot UI Customization
+- **Table rendering**: Custom ReactMarkdown components convert markdown tables to mobile-friendly cards
+- **Chat window sizing**: Currently `h-[36rem]` (576px) - adjust in `Chatbot.tsx`
+- **Message styling**: Separate styling for user vs assistant messages
+- **Error handling**: Graceful fallbacks when OpenAI API is unavailable
+
+### API Integration Details
+- Uses OpenAI Responses API (not Chat Completions) for better RAG integration
+- Conversation history maintained in-memory (consider Redis for production)
+- Session IDs generated and persisted in localStorage
+- File search tools automatically included when vector store is configured
 
 ## Component Patterns
+
+### Chatbot Integration Pattern
+- `ChatbotProvider` manages open/closed state and wraps toggle + window components
+- `Chatbot` component handles conversation UI, markdown rendering, and API communication
+- **Responsive table rendering**: Tables convert to card format for mobile chat interface
+- **ReactMarkdown** with custom components for proper table formatting in constrained space
+- **Session persistence**: Conversations persist across page reloads via localStorage
 
 ### Language Selector Pattern
 - `FancyLanguageSelector` provides dropdown with flags, native names, and animations
@@ -82,7 +116,6 @@ function Component() {
 - Components receive `t` function via `useI18n` hook
 - Text content is externalized to JSON files
 - Fallback to key name if translation missing
-- Page metadata updates dynamically via `DynamicHead`
 
 ## Design System
 
@@ -103,23 +136,36 @@ function Component() {
 
 ## Important Implementation Details
 
+### Chatbot Configuration
+- **System prompt** stored in `src/config/chatbot-prompt.ts` for easy modification without code changes
+- **API endpoint** at `/api/chat` handles OpenAI Responses API integration
+- **Environment variables** required:
+  - `OPENAI_API_KEY` - Required for chatbot functionality
+  - `OPENAI_VECTOR_STORE_ID` - Optional, enables file search capability
+  - `OPENAI_ORGANIZATION` - Optional organization ID
+  - `OPENAI_PROJECT_ID` - Optional project ID for usage tracking
+- **Model selection**: Currently uses `gpt-4o` for file search compatibility
+- **Response handling**: Extracts text from `output_text` field of OpenAI response
+
 ### i18n Provider Setup
 - Must wrap app in `I18nProvider` (done in layout.tsx)
 - Provider handles loading state and returns null until translations loaded
 - Browser language detection happens client-side in useEffect
 
 ### Next.js Configuration
-- i18n config in next.config.js sets up routing
+- i18n config in next.config.js sets up routing but shows deprecation warning with App Router
 - localeDetection disabled to use custom detection logic
 - App Router pattern (not Pages Router)
 
 ### Component Organization
 - Each major section is a separate component
-- Reusable elements (Logo, LanguageSelector) are standalone
+- Reusable elements are standalone components
+- Chatbot integrated at layout level via `ChatbotProvider`
 - Page composition in `src/app/page.tsx`
 
 ## Deployment Notes
 - Vercel configuration in `vercel.json`
-- Static export compatible
-- Environment variables not used (all content in translation files)
-- No API routes (static landing page)
+- **Environment variables required** for chatbot functionality (see `.env.example`)
+- API route at `/api/chat` requires server-side rendering capabilities
+- Static export NOT compatible due to API routes and server-side chatbot functionality
+- Configure OpenAI environment variables in deployment platform

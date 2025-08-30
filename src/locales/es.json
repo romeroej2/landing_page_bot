@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "title": "Plantilla Moderna de Página de Aterrizaje - NextLanding",
+    "description": "Una hermosa plantilla moderna de página de aterrizaje construida con Next.js, TypeScript y Tailwind CSS. Perfecta para startups y productos SaaS."
+  },
+  "hero": {
+    "badge": "Nuevo: La versión 2.0 ya está aquí",
+    "title": "Construye Algo",
+    "titleHighlight": "Increíble Hoy",
+    "subtitle": "La plantilla de página de aterrizaje moderna que te ayuda a lanzar más rápido. Construida con Next.js, TypeScript y Tailwind CSS.",
+    "ctaPrimary": "Comenzar Gratis",
+    "ctaSecondary": "Ver Demo",
+    "stats": {
+      "downloads": "Descargas",
+      "uptime": "Disponibilidad",
+      "support": "Soporte"
+    }
+  },
+  "features": {
+    "title": "Todo lo que necesitas para",
+    "titleHighlight": "construir y desplegar",
+    "subtitle": "Una plantilla completa con todas las herramientas modernas y mejores prácticas para ayudarte a lanzar tu proyecto rápidamente y eficientemente.",
+    "items": {
+      "fast": {
+        "title": "Súper Rápido",
+        "description": "Optimizado para el rendimiento con Next.js App Router y generación estática."
+      },
+      "secure": {
+        "title": "Seguro por Defecto",
+        "description": "Construido con las mejores prácticas de seguridad y patrones de autenticación modernos."
+      },
+      "beautiful": {
+        "title": "Diseño Hermoso",
+        "description": "Cuidadosamente elaborado con Tailwind CSS y un sistema de diseño cohesivo."
+      },
+      "developer": {
+        "title": "Amigable para Desarrolladores",
+        "description": "Soporte para TypeScript, configuración de ESLint, y excelente experiencia de desarrollo."
+      },
+      "seo": {
+        "title": "Optimizado para SEO",
+        "description": "Etiquetas meta, datos estructurados y optimizaciones de rendimiento incluidas."
+      },
+      "mobile": {
+        "title": "Móvil Primero",
+        "description": "Diseño responsivo que funciona perfectamente en todos los dispositivos y tamaños de pantalla."
+      }
+    },
+    "badge": "Listo para desplegar en Vercel con un clic"
+  },
+  "cta": {
+    "title": "¿Listo para construir tu",
+    "titleHighlight": "próximo gran proyecto?",
+    "subtitle": "Comienza con nuestra plantilla moderna de página de aterrizaje. Clona, personaliza y despliega en minutos, no horas.",
+    "primaryButton": "Clonar Repositorio",
+    "secondaryButton": "Descargar Plantilla",
+    "features": {
+      "nextjs": "Next.js 14",
+      "typescript": "TypeScript",
+      "tailwind": "Tailwind CSS"
+    }
+  },
+  "footer": {
+    "brand": "TuMarca",
+    "description": "La plantilla de página de aterrizaje moderna que te ayuda a construir y desplegar hermosos sitios web más rápido que nunca.",
+    "links": {
+      "product": {
+        "title": "Producto",
+        "items": {
+          "features": "Características",
+          "pricing": "Precios",
+          "documentation": "Documentación",
+          "changelog": "Cambios"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "items": {
+          "about": "Acerca de",
+          "blog": "Blog",
+          "careers": "Carreras",
+          "contact": "Contacto"
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "items": {
+          "community": "Comunidad",
+          "helpCenter": "Centro de Ayuda",
+          "partners": "Socios",
+          "status": "Estado"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "items": {
+          "privacy": "Privacidad",
+          "terms": "Términos",
+          "security": "Seguridad",
+          "cookies": "Cookies"
+        }
+      }
+    },
+    "copyright": "Todos los derechos reservados.",
+    "builtWith": "Construido con ❤️ usando Next.js",
+    "status": "Todos los sistemas operativos"
+  }
+}

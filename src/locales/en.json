@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "title": "Modern Landing Page Template - NextLanding",
+    "description": "A beautiful, modern landing page template built with Next.js, TypeScript, and Tailwind CSS. Perfect for startups and SaaS products."
+  },
+  "hero": {
+    "badge": "New: Version 2.0 is here",
+    "title": "Build Something",
+    "titleHighlight": "Amazing Today",
+    "subtitle": "The modern landing page template that helps you ship faster. Built with Next.js, TypeScript, and Tailwind CSS.",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "Watch Demo",
+    "stats": {
+      "downloads": "Downloads",
+      "uptime": "Uptime",
+      "support": "Support"
+    }
+  },
+  "features": {
+    "title": "Everything you need to",
+    "titleHighlight": "build and deploy",
+    "subtitle": "A comprehensive template with all the modern tools and best practices to help you launch your project quickly and efficiently.",
+    "items": {
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Optimized for performance with Next.js App Router and static generation."
+      },
+      "secure": {
+        "title": "Secure by Default",
+        "description": "Built with security best practices and modern authentication patterns."
+      },
+      "beautiful": {
+        "title": "Beautiful Design",
+        "description": "Carefully crafted with Tailwind CSS and a cohesive design system."
+      },
+      "developer": {
+        "title": "Developer Friendly",
+        "description": "TypeScript support, ESLint configuration, and excellent DX out of the box."
+      },
+      "seo": {
+        "title": "SEO Optimized",
+        "description": "Meta tags, structured data, and performance optimizations included."
+      },
+      "mobile": {
+        "title": "Mobile First",
+        "description": "Responsive design that works perfectly on all devices and screen sizes."
+      }
+    },
+    "badge": "Ready to deploy on Vercel in one click"
+  },
+  "cta": {
+    "title": "Ready to build your",
+    "titleHighlight": "next great project?",
+    "subtitle": "Get started with our modern landing page template. Clone, customize, and deploy in minutes, not hours.",
+    "primaryButton": "Clone Repository",
+    "secondaryButton": "Download Template",
+    "features": {
+      "nextjs": "Next.js 14",
+      "typescript": "TypeScript",
+      "tailwind": "Tailwind CSS"
+    }
+  },
+  "footer": {
+    "brand": "YourBrand",
+    "description": "The modern landing page template that helps you build and deploy beautiful websites faster than ever before.",
+    "links": {
+      "product": {
+        "title": "Product",
+        "items": {
+          "features": "Features",
+          "pricing": "Pricing",
+          "documentation": "Documentation",
+          "changelog": "Changelog"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "items": {
+          "about": "About",
+          "blog": "Blog",
+          "careers": "Careers",
+          "contact": "Contact"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "items": {
+          "community": "Community",
+          "helpCenter": "Help Center",
+          "partners": "Partners",
+          "status": "Status"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "items": {
+          "privacy": "Privacy",
+          "terms": "Terms",
+          "security": "Security",
+          "cookies": "Cookies"
+        }
+      }
+    },
+    "copyright": "All rights reserved.",
+    "builtWith": "Built with ❤️ using Next.js",
+    "status": "All systems operational"
+  }
+}

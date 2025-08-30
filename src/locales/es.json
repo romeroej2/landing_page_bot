@@ -1,4 +1,15 @@
 {
+  "products": {
+    "featured": "Productos Destacados",
+    "viewOnAmazon": "Ver en Amazon"
+  },
+  "navigation": {
+    "features": "Características",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "signIn": "Iniciar Sesión",
+    "getStarted": "Comenzar"
+  },
   "meta": {
     "title": "Plantilla Moderna de Página de Aterrizaje - NextLanding",
     "description": "Una hermosa plantilla moderna de página de aterrizaje construida con Next.js, TypeScript y Tailwind CSS. Perfecta para startups y productos SaaS."

@@ -1,4 +1,15 @@
 {
+  "products": {
+    "featured": "Featured Products",
+    "viewOnAmazon": "View on Amazon"
+  },
+  "navigation": {
+    "features": "Features",
+    "about": "About",
+    "contact": "Contact",
+    "signIn": "Sign In",
+    "getStarted": "Get Started"
+  },
   "meta": {
     "title": "Modern Landing Page Template - NextLanding",
     "description": "A beautiful, modern landing page template built with Next.js, TypeScript, and Tailwind CSS. Perfect for startups and SaaS products."

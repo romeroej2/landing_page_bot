@@ -1,6 +1,17 @@
-# Modern Landing Page Template
+# AI-Powered Landing Page with Custom Knowledge Base Chatbot
 
-A beautiful, modern landing page template built with Next.js 14, TypeScript, and Tailwind CSS. Perfect for startups, SaaS products, or any project that needs a professional landing page.
+A modern, internationalized landing page template with an integrated AI chatbot that can query custom datasets. Built with Next.js 14, TypeScript, and Tailwind CSS. Perfect for organizations that need a professional landing page with a specialized AI assistant for their data.
+
+## 🎯 Purpose
+
+This application demonstrates how to create a **Retrieval-Augmented Generation (RAG) chatbot** that can intelligently search and present information from custom datasets. The current implementation features:
+
+- **Colombian Dietary Supplements Registry**: An AI assistant that helps users query the "REGISTROS SANITARIOS DE SUPLEMENTOS DIETARIOS" database
+- **Professional Landing Page**: A modern, responsive website that showcases your service
+- **Bilingual Support**: English and Spanish localization
+- **Mobile-Optimized Chat**: Tables and data are presented in a mobile-friendly format
+
+You can easily adapt this template to create your own specialized AI assistant for any domain - legal documents, product catalogs, research databases, customer support, etc.
 
 ## ✨ Features
 
@@ -52,17 +63,109 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 🤖 Chatbot Setup (Optional)
+## 🤖 Setting Up Your Own AI Knowledge Base Chatbot
 
-The template includes an AI-powered chatbot. To enable it:
+This template includes a fully functional RAG (Retrieval-Augmented Generation) chatbot that can query custom datasets. Here's how to set up your own:
 
-1. Get an OpenAI API key from [OpenAI Platform](https://platform.openai.com/)
-2. Add it to your `.env.local` file:
-```bash
-OPENAI_API_KEY=your_openai_api_key_here
+### Step 1: Get an OpenAI API Key
+
+1. Visit [OpenAI Platform](https://platform.openai.com/)
+2. Create an account and add billing information
+3. Generate an API key from the API Keys section
+4. Copy the `.env.example` file to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+5. Add your API key to `.env.local`:
+   ```bash
+   OPENAI_API_KEY=sk-your-openai-api-key-here
+   ```
+
+### Step 2: Create Your Vector Store (Knowledge Base)
+
+To enable the chatbot to search your custom data, you need to create a vector store:
+
+1. **Prepare Your Data**: Convert your dataset to markdown format. For best results:
+   - Use tables for structured data
+   - Include metadata headers like: `<!-- Source: filename.csv | Encoding: utf-8 | Rows: 1-100 -->`
+   - Break large files into chunks if needed
+
+2. **Create Vector Store via OpenAI Dashboard**:
+   - Go to [OpenAI Platform](https://platform.openai.com/)
+   - Navigate to "Storage" → "Vector Stores"
+   - Click "Create Vector Store"
+   - Upload your markdown files
+   - Copy the Vector Store ID (starts with `vs_`)
+
+3. **Add Vector Store ID to Environment**:
+   ```bash
+   OPENAI_VECTOR_STORE_ID=vs_your-vector-store-id-here
+   ```
+
+### Step 3: Customize Your Chatbot Prompt
+
+The chatbot's behavior is controlled by the system prompt in `src/config/chatbot-prompt.ts`. You can modify this file to:
+
+- Change the assistant's personality and expertise domain
+- Specify output formats (tables, JSON, etc.)
+- Add domain-specific instructions
+- Configure citation and source requirements
+- Set up query strategies for your data type
+
+Example modifications:
+```typescript
+export const CHATBOT_SYSTEM_PROMPT = `You are an expert assistant for [YOUR DOMAIN].
+
+Your knowledge base contains [DESCRIBE YOUR DATA].
+
+When users ask about [YOUR DOMAIN], always:
+1. Search the knowledge base first
+2. Present results in a clear table format
+3. Include source citations
+4. If no data found, suggest alternative search terms
+
+[ADD YOUR SPECIFIC INSTRUCTIONS HERE]`
 ```
 
-See [CHATBOT_SETUP.md](CHATBOT_SETUP.md) for detailed setup instructions.
+### Step 4: Update UI Text (Optional)
+
+Customize the chatbot interface text by editing the translation files:
+- `src/locales/en.json` - English text
+- `src/locales/es.json` - Spanish text
+
+Look for the `chatbot.*` keys to modify:
+- Welcome messages
+- Button labels
+- Error messages
+- Placeholder text
+
+## 💡 Use Cases & Examples
+
+This template is perfect for creating specialized AI assistants for various domains:
+
+### 📊 **Data Registry Applications**
+- Government databases (permits, licenses, registrations)
+- Product catalogs with specifications
+- Scientific datasets and research papers
+- Compliance and regulatory information
+
+### 🏢 **Business Applications**
+- Customer support knowledge bases
+- Internal document search systems
+- Policy and procedure assistants
+- Training material chatbots
+
+### 🎓 **Educational & Research**
+- Academic paper databases
+- Course material assistants
+- Research data explorers
+- Library catalog systems
+
+### ⚕️ **Healthcare & Legal**
+- Medical device databases
+- Legal precedent searchers
+- Pharmaceutical information systems
+- Regulatory compliance assistants
 
 ## 📁 Project Structure
 
@@ -97,29 +200,73 @@ See [CHATBOT_SETUP.md](CHATBOT_SETUP.md) for detailed setup instructions.
 
 ## 🎨 Customization
 
-### Colors
+### Adapting for Your Domain
 
-The template uses a beautiful blue color palette. You can customize colors in `tailwind.config.ts`:
+1. **Update the Landing Page Content**:
+   - Edit `src/locales/en.json` and `src/locales/es.json` to change all text
+   - Modify components in `src/components/` (Hero, Features, CTA, Footer)
+   - Update colors in `tailwind.config.ts` to match your brand
+
+2. **Configure Your AI Assistant**:
+   - Replace the system prompt in `src/config/chatbot-prompt.ts`
+   - Upload your dataset to OpenAI's vector store
+   - Update the `OPENAI_VECTOR_STORE_ID` environment variable
+
+3. **Customize the Chat Interface**:
+   - Modify chatbot UI text in translation files (`chatbot.*` keys)
+   - Adjust chat window size in `src/components/Chatbot.tsx`
+   - Style the table rendering for your data format
+
+## 🎯 Best Practices for Knowledge Base Chatbots
+
+### Data Preparation Tips
+
+1. **Structure Your Data**:
+   - Use markdown tables for structured information
+   - Include clear headers and consistent column names
+   - Add metadata comments with source information
+
+2. **Optimize for Search**:
+   - Include synonyms and alternative terms
+   - Use consistent naming conventions
+   - Break large datasets into logical chunks
+
+3. **Quality Over Quantity**:
+   - Clean and validate your data before upload
+   - Remove duplicates and inconsistencies
+   - Ensure all important fields are populated
+
+### Prompt Engineering Tips
+
+1. **Be Specific About Your Domain**:
+   - Clearly define what your assistant knows about
+   - Set expectations about data limitations
+   - Include examples of good queries
+
+2. **Define Output Formats**:
+   - Specify how results should be presented
+   - Include citation requirements
+   - Set up fallback responses for no results
+
+3. **Handle Edge Cases**:
+   - What to do when no data is found
+   - How to handle ambiguous queries
+   - When to ask for clarification
+
+### Visual Customization
+
+The template uses a blue color palette that you can customize in `tailwind.config.ts`:
 
 ```typescript
 colors: {
   primary: {
-    // Blue shades from 50 to 950
+    // Your primary brand colors (50-950 shades)
   },
   secondary: {
-    // Secondary blue shades
+    // Your secondary/accent colors (50-950 shades)
   },
 }
 ```
-
-### Content
-
-Edit the components in `src/components/` to customize:
-
-- **Hero.tsx** - Main hero section with heading and CTA
-- **Features.tsx** - Feature showcase with icons
-- **CTA.tsx** - Call-to-action section
-- **Footer.tsx** - Footer with links and social media
 
 ### Internationalization
 
@@ -166,17 +313,35 @@ The template uses Tailwind CSS. Key classes used:
 1. Push your code to GitHub
 2. Visit [vercel.com](https://vercel.com)
 3. Connect your GitHub repository
-4. Deploy with one click!
-
-The template includes a `vercel.json` configuration file for optimal deployment.
+4. **Configure Environment Variables**:
+   - `OPENAI_API_KEY` - Your OpenAI API key
+   - `OPENAI_VECTOR_STORE_ID` - Your vector store ID
+   - `OPENAI_ORGANIZATION` - (Optional) Your organization ID
+   - `OPENAI_PROJECT_ID` - (Optional) Your project ID
+5. Deploy!
 
 ### Other Platforms
 
-The template can be deployed to any platform that supports Next.js:
-- Netlify
+The template can be deployed to any platform that supports Next.js with API routes:
+- Netlify Functions
 - AWS Amplify
 - Railway
 - DigitalOcean App Platform
+- Render
+
+**Important**: Make sure to set the environment variables in your deployment platform's settings.
+
+### Environment Variables Setup
+
+All platforms will need these environment variables configured:
+
+```bash
+OPENAI_API_KEY=sk-your-openai-api-key-here
+OPENAI_VECTOR_STORE_ID=vs_your-vector-store-id-here
+# Optional:
+OPENAI_ORGANIZATION=org-your-organization-id
+OPENAI_PROJECT_ID=proj_your-project-id
+```
 
 ## 📝 Scripts
 
@@ -203,13 +368,22 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 💬 Support
 
-If you have any questions or need help, please:
-1. Check the documentation
-2. Open an issue on GitHub
-3. Join our community discussions
+If you have questions about setting up your knowledge base chatbot:
+
+1. **Check the Documentation**: Review this README and `CLAUDE.md` for detailed setup instructions
+2. **OpenAI Resources**: Visit [OpenAI's documentation](https://platform.openai.com/docs) for API and vector store guidance
+3. **Open an Issue**: Create a GitHub issue for bugs or feature requests
+4. **Community Discussions**: Share your use cases and get help from other developers
+
+## 📚 Additional Resources
+
+- [OpenAI Platform Documentation](https://platform.openai.com/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Vector Store Best Practices](https://platform.openai.com/docs/assistants/tools/file-search)
 
 ---
 
 **Happy building!** 🚀
 
-Made with ❤️ for developers who want to ship fast.
+Made with ❤️ for developers who want to create intelligent, domain-specific AI assistants.

@@ -200,8 +200,8 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
                             remarkPlugins={[remarkGfm]}
                             components={{
                             table: ({children}) => (
-                              <div className="overflow-x-auto my-2">
-                                <table className="min-w-full border-collapse border border-gray-300 text-xs">
+                              <div className="overflow-x-auto my-2 -mx-2">
+                                <table className="w-full border-collapse border border-gray-300 text-xs min-w-0">
                                   {children}
                                 </table>
                               </div>
@@ -210,13 +210,15 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
                               <thead className="bg-gray-50">{children}</thead>
                             ),
                             th: ({children}) => (
-                              <th className="border border-gray-300 px-2 py-1 text-left font-semibold text-gray-700">
+                              <th className="border border-gray-300 px-1 py-1 text-left font-semibold text-gray-700 text-xs">
                                 {children}
                               </th>
                             ),
                             td: ({children}) => (
-                              <td className="border border-gray-300 px-2 py-1 text-gray-800">
-                                {children}
+                              <td className="border border-gray-300 px-1 py-1 text-gray-800 text-xs break-words max-w-0">
+                                <div className="truncate" title={typeof children === 'string' ? children : ''}>
+                                  {children}
+                                </div>
                               </td>
                             ),
                             p: ({children}) => (

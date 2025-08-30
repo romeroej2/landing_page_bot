@@ -8,6 +8,7 @@ const conversationSessions = new Map<string, Array<{ role: 'user' | 'assistant',
 // Configuration from environment variables
 const VECTOR_STORE_ID = process.env.OPENAI_VECTOR_STORE_ID
 const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o'
+const REASONING_EFFORT = process.env.OPENAI_REASONING_EFFORT || 'low'
 const CONVERSATION_MEMORY_LIMIT = parseInt(process.env.CONVERSATION_MEMORY_LIMIT || '20', 10)
 
 
@@ -47,6 +48,9 @@ export async function POST(request: NextRequest) {
     const completion = await openai.responses.create({
       model: OPENAI_MODEL,
       input: `${systemMessage.content}\n\nConversation history:\n${conversation.map(msg => `${msg.role}: ${msg.content}`).join('\n')}\n\nUser: ${message}`,
+      reasoning: {
+        effort: REASONING_EFFORT
+      },
       ...(tools.length > 0 && { tools })
     })
 

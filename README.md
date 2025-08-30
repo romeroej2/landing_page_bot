@@ -4,28 +4,27 @@ A modern, internationalized landing page template with an integrated AI chatbot 
 
 ## 🎯 Purpose
 
-This application demonstrates how to create a **Retrieval-Augmented Generation (RAG) chatbot** that can intelligently search and present information from custom datasets. The current implementation features:
+This application demonstrates how to create a **Retrieval-Augmented Generation (RAG) chatbot** that can intelligently search and present information from custom datasets. You can easily adapt this template to create your own specialized AI assistant for any domain - legal documents, product catalogs, research databases, customer support, etc.
 
-- **Colombian Dietary Supplements Registry**: An AI assistant that helps users query the "REGISTROS SANITARIOS DE SUPLEMENTOS DIETARIOS" database
+### Key Features:
 - **Professional Landing Page**: A modern, responsive website that showcases your service
+- **AI Knowledge Base Integration**: OpenAI-powered chatbot with custom dataset search
 - **Bilingual Support**: English and Spanish localization
 - **Mobile-Optimized Chat**: Tables and data are presented in a mobile-friendly format
 
-You can easily adapt this template to create your own specialized AI assistant for any domain - legal documents, product catalogs, research databases, customer support, etc.
-
 ## ✨ Features
 
-- 🚀 **Next.js 14** with App Router
-- 📘 **TypeScript** for type safety
-- 🎨 **Tailwind CSS** for styling
+- 🚀 **Next.js 15.5.2** with App Router
+- 📘 **TypeScript 5.3.3** for type safety
+- 🎨 **Tailwind CSS 3.4.0** for styling
 - 🌐 **Internationalization** (English & Spanish)
-- 🤖 **AI Chatbot Integration** with OpenAI
+- 🤖 **OpenAI API 5.16.0** integration with vector store search
 - 📱 **Fully Responsive** design
 - ⚡ **Performance Optimized** 
 - 🔍 **SEO Ready** with proper meta tags
 - 🎯 **Modern Design** with blue color palette
 - 📦 **Ready to Deploy** on Vercel
-- 🛠️ **Developer Friendly** with ESLint
+- 🛠️ **ESLint 8.56.0** for code quality
 
 ## 🎨 Design
 
@@ -40,8 +39,8 @@ The template features a modern, clean design with:
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- Node.js 20+ 
+- npm
 
 ### Installation
 
@@ -179,22 +178,25 @@ This template is perfect for creating specialized AI assistants for various doma
 │   ├── components/
 │   │   ├── Chatbot.tsx        # AI chatbot component
 │   │   ├── ChatbotProvider.tsx
+│   │   ├── Header.tsx
 │   │   ├── Hero.tsx
 │   │   ├── Features.tsx
 │   │   ├── CTA.tsx
 │   │   ├── Footer.tsx
 │   │   └── LanguageSwitcher.tsx
+│   ├── config/
+│   │   └── chatbot-prompt.ts  # Chatbot system prompt
 │   ├── lib/
-│   │   ├── i18n.ts
+│   │   ├── i18n.tsx
 │   │   └── openai.ts          # OpenAI configuration
 │   └── locales/
 │       ├── en.json
 │       └── es.json
 ├── public/
-├── CHATBOT_SETUP.md           # Detailed chatbot setup guide
 ├── tailwind.config.ts
 ├── tsconfig.json
 ├── next.config.js
+├── vercel.json
 └── package.json
 ```
 
@@ -336,9 +338,13 @@ The template can be deployed to any platform that supports Next.js with API rout
 All platforms will need these environment variables configured:
 
 ```bash
+# Required
 OPENAI_API_KEY=sk-your-openai-api-key-here
 OPENAI_VECTOR_STORE_ID=vs_your-vector-store-id-here
-# Optional:
+
+# Optional Configuration
+OPENAI_MODEL=gpt-4o
+CONVERSATION_MEMORY_LIMIT=20
 OPENAI_ORGANIZATION=org-your-organization-id
 OPENAI_PROJECT_ID=proj_your-project-id
 ```
@@ -352,10 +358,14 @@ OPENAI_PROJECT_ID=proj_your-project-id
 
 ## 🛠️ Built With
 
-- [Next.js 14](https://nextjs.org/) - React framework
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
-- [Lucide React](https://lucide.dev/) - Beautiful icons
+- [Next.js 15.5.2](https://nextjs.org/) - React framework
+- [TypeScript 5.3.3](https://www.typescriptlang.org/) - Type safety
+- [React 18.2.0](https://reactjs.org/) - UI library
+- [Tailwind CSS 3.4.0](https://tailwindcss.com/) - Utility-first CSS
+- [OpenAI API 5.16.0](https://platform.openai.com/) - AI integration
+- [React Markdown 10.1.0](https://github.com/remarkjs/react-markdown) - Markdown rendering
+- [Lucide React 0.303.0](https://lucide.dev/) - Beautiful icons
+- [ESLint 8.56.0](https://eslint.org/) - Code linting
 - [Vercel](https://vercel.com/) - Deployment platform
 
 ## 📄 License

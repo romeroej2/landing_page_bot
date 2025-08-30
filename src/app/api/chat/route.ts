@@ -5,8 +5,10 @@ import { CHATBOT_SYSTEM_PROMPT } from '@/config/chatbot-prompt'
 // Store conversation sessions in memory (in production, use Redis or database)
 const conversationSessions = new Map<string, Array<{ role: 'user' | 'assistant', content: string }>>()
 
-// Vector store ID for file search
+// Configuration from environment variables
 const VECTOR_STORE_ID = process.env.OPENAI_VECTOR_STORE_ID
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o'
+const CONVERSATION_MEMORY_LIMIT = parseInt(process.env.CONVERSATION_MEMORY_LIMIT || '20', 10)
 
 
 export async function POST(request: NextRequest) {
@@ -43,7 +45,7 @@ export async function POST(request: NextRequest) {
     console.log('Tools configuration:', tools)
 
     const completion = await openai.responses.create({
-      model: 'gpt-4o',
+      model: OPENAI_MODEL,
       input: `${systemMessage.content}\n\nConversation history:\n${conversation.map(msg => `${msg.role}: ${msg.content}`).join('\n')}\n\nUser: ${message}`,
       ...(tools.length > 0 && { tools })
     })
@@ -61,9 +63,9 @@ export async function POST(request: NextRequest) {
     // Add assistant response to conversation
     conversation.push({ role: 'assistant', content: assistantMessage })
     
-    // Store updated conversation (limit to last 20 messages for memory management)
-    if (conversation.length > 20) {
-      conversation = conversation.slice(-20)
+    // Store updated conversation (limit to last N messages for memory management)
+    if (conversation.length > CONVERSATION_MEMORY_LIMIT) {
+      conversation = conversation.slice(-CONVERSATION_MEMORY_LIMIT)
     }
     conversationSessions.set(currentSessionId, conversation)
 

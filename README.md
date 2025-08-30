@@ -1,6 +1,6 @@
 # AI-Powered Landing Page with Custom Knowledge Base Chatbot
 
-A modern, internationalized landing page template with an integrated AI chatbot that can query custom datasets. Built with Next.js 14, TypeScript, and Tailwind CSS. Perfect for organizations that need a professional landing page with a specialized AI assistant for their data.
+A modern, internationalized landing page template with an integrated AI chatbot that can query custom datasets. Built with Next.js 15.5.2, TypeScript, and Tailwind CSS. Perfect for organizations that need a professional landing page with a specialized AI assistant for their data.
 
 ## 🎯 Purpose
 

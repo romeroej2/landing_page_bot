@@ -104,5 +104,15 @@
     "copyright": "Todos los derechos reservados.",
     "builtWith": "Construido con ❤️ usando Next.js",
     "status": "Todos los sistemas operativos"
+  },
+  "chatbot": {
+    "title": "Asistente IA",
+    "welcome": "¡Hola! ¿Cómo puedo ayudarte hoy?",
+    "placeholder": "Escribe tu mensaje...",
+    "send": "Enviar mensaje",
+    "open": "Abrir chat",
+    "close": "Cerrar chat",
+    "typing": "Escribiendo...",
+    "error": "Lo siento, encontré un error. Por favor, inténtalo de nuevo."
   }
 }

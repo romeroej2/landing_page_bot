@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(del \"C:\\Users\\ejrom\\exa-tec\\landing_page_bot\\src\\lib\\assistant.ts\")",
+      "Bash(npm run dev:*)",
+      "Bash(npm update:*)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

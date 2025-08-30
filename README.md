@@ -8,6 +8,7 @@ A beautiful, modern landing page template built with Next.js 14, TypeScript, and
 - 📘 **TypeScript** for type safety
 - 🎨 **Tailwind CSS** for styling
 - 🌐 **Internationalization** (English & Spanish)
+- 🤖 **AI Chatbot Integration** with OpenAI
 - 📱 **Fully Responsive** design
 - ⚡ **Performance Optimized** 
 - 🔍 **SEO Ready** with proper meta tags
@@ -51,26 +52,43 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+### 🤖 Chatbot Setup (Optional)
+
+The template includes an AI-powered chatbot. To enable it:
+
+1. Get an OpenAI API key from [OpenAI Platform](https://platform.openai.com/)
+2. Add it to your `.env.local` file:
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+See [CHATBOT_SETUP.md](CHATBOT_SETUP.md) for detailed setup instructions.
+
 ## 📁 Project Structure
 
 ```
 ├── src/
 │   ├── app/
+│   │   ├── api/chat/          # Chatbot API endpoints
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx
 │   ├── components/
+│   │   ├── Chatbot.tsx        # AI chatbot component
+│   │   ├── ChatbotProvider.tsx
 │   │   ├── Hero.tsx
 │   │   ├── Features.tsx
 │   │   ├── CTA.tsx
 │   │   ├── Footer.tsx
 │   │   └── LanguageSwitcher.tsx
 │   ├── lib/
-│   │   └── i18n.ts
+│   │   ├── i18n.ts
+│   │   └── openai.ts          # OpenAI configuration
 │   └── locales/
 │       ├── en.json
 │       └── es.json
 ├── public/
+├── CHATBOT_SETUP.md           # Detailed chatbot setup guide
 ├── tailwind.config.ts
 ├── tsconfig.json
 ├── next.config.js
